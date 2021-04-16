@@ -1,18 +1,29 @@
-
-div.popup {
-  display: flex;
+div#popup-container {
+  width: 100vw;
+  height: 100vh;
   position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(100, 100, 100, 0.5);
+  font-family: sans-serif;
+font-weight: 300;
+
+}
+
+div#popup-container > div.popup {
+  display: flex;
+  position: absolute;
   width: 300px;
   min-height: 200px;
   flex-direction: column;
-  border-radius: 8px;
+  border-radius: 10px;
   background: rgba(245, 245, 245, 1);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-div.popup>div.content {
+div#popup-container > div.popup > div.content {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -20,14 +31,14 @@ div.popup>div.content {
   flex-direction: column;
 }
 
-div.popup>div.content #promptOutput {
+div#popup-container > div.popup > div.content #promptOutput {
   display: flex;
   flex-direction: column;
   width: 100%;
   text-align: center;
 }
 
-div.popup>div.content #promptOutput>a {
+div#popup-container > div.popup > div.content #promptOutput > a {
   border-top: 1px solid #80cd32;
   height: 50px;
   justify-content: center;
@@ -35,12 +46,12 @@ div.popup>div.content #promptOutput>a {
   display: flex;
 }
 
-div.popup>div.buttons {
+div#popup-container > div.popup > div.buttons {
   display: flex;
   height: 50px;
 }
 
-div.popup>div.buttons>a.button {
+div#popup-container > div.popup > div.buttons > a.button {
   flex: 1;
   border-top: 1px solid #80cd32;
   border-left: 1px solid #80cd32;
@@ -54,16 +65,16 @@ div.popup>div.buttons>a.button {
   display: flex;
 }
 
-div.popup>div.buttons>a.button:focus {
+div#popup-container > div.popup > div.buttons > a.button:focus {
   font-weight: 800;
 }
 
-div.popup>div.buttons>a.button:first-child {
+div#popup-container > div.popup > div.buttons > a.button:first-child {
   border-top: 1px solid #80cd32;
   border-left: none;
   border-bottom-left-radius: 8px;
 }
 
-div.popup>div.buttons>a.button:last-child {
+div#popup-container > div.popup > div.buttons > a.button:last-child {
   border-bottom-right-radius: 8px;
 }

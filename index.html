@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>mkattner.web.notification</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="./notification.js"></script>
+  <link rel="stylesheet" href="notification.css">
+</head>
+
+<body>
+</body>
+<script>
+  $(document).ready(async () => {
+    let RUN = true;
+    const demoProssedure = async () => {
+      return new Promise(function(resolve, reject) {
+        Alert("Alert whatever you want.")
+          .then(() => {
+            return Confirm("Confirm whatever you want.")
+          })
+          .then(() => {
+            return Alert("Accepted!")
+          })
+          .catch(() => {
+            return Alert("Declined!")
+          })
+          .then(() => {
+            return Prompt("Ask for a text input.")
+          })
+          .then((value) => {
+            return Alert("Your value is: " + value)
+          })
+          .catch(() => {
+            return Alert("Prompt canceled.")
+          })
+          .then(() => {
+            return Confirm("Restart test prossedure?")
+          })
+          .then(() => {
+            resolve();
+          })
+          .catch(() => {
+            reject();
+          })
+      });
+    }
+    while (RUN)
+      await demoProssedure()
+      .then(() => {
+        console.log("restart")
+      })
+      .catch(() => {
+        RUN = false;
+        console.log("done")
+      });
+
+  });
+</script>
+
+</html>
