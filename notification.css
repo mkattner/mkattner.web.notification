@@ -1,0 +1,69 @@
+
+div.popup {
+  display: flex;
+  position: fixed;
+  width: 300px;
+  min-height: 200px;
+  flex-direction: column;
+  border-radius: 8px;
+  background: rgba(245, 245, 245, 1);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.popup>div.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+div.popup>div.content #promptOutput {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+
+div.popup>div.content #promptOutput>a {
+  border-top: 1px solid #80cd32;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+div.popup>div.buttons {
+  display: flex;
+  height: 50px;
+}
+
+div.popup>div.buttons>a.button {
+  flex: 1;
+  border-top: 1px solid #80cd32;
+  border-left: 1px solid #80cd32;
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+  color: #80cd32;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+div.popup>div.buttons>a.button:focus {
+  font-weight: 800;
+}
+
+div.popup>div.buttons>a.button:first-child {
+  border-top: 1px solid #80cd32;
+  border-left: none;
+  border-bottom-left-radius: 8px;
+}
+
+div.popup>div.buttons>a.button:last-child {
+  border-bottom-right-radius: 8px;
+}
