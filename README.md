@@ -3,6 +3,7 @@ This is a simple javascript and css functionality to display iOS like notificati
 The popups use jQuery and javascript Promise functionality.
 
 ## Installation
+You can try it with the index.html file. Clone the repository to your computer. Start a local webserver. (e.g.: python -m http.server 80)
 1) Load jQuery https://jquery.com/
 2) load notification.js and notification.css
 3) Done! Use the functions
