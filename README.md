@@ -10,10 +10,17 @@ The popups use jQuery and javascript Promise functionality.
 ## Alert
 like javascript window.alert()
 
+e.g.: await Alert("Alarm Alarm Alarm") -> then()
+
 ## Prompt
 like javascript window.prompt()
 
+e.g.: await Prompt("Do you want?") -> then(<value>) -> catch()
+
 ## Confirm
-like javascript window.wait()
+like javascript window.confirm()
+
+e.g.: await Alert("Confirm?") -> then() -> catch()
 
 ## Wait
+tbi
