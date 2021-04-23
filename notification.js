@@ -49,7 +49,7 @@ const Wait = async (html, promise) => {
       });
     });
   } else {
-    throw "Exception: Function Wait() needs a String and a JS Promise() instance."
+    throw "Exception: Function Wait() needs a DOM string and a JS Promise() instance as parameter."
   }
 };
 
@@ -123,7 +123,7 @@ const Prompt = async (html) => {
       })
     })
   } else {
-    throw "Exception: Function Wait() needs a String as parameter."
+    throw "Exception: Function Wait() needs a DOM string as parameter."
   }
 };
 
@@ -169,7 +169,7 @@ const Alert = async (html) => {
       });
     });
   } else {
-    throw "Exception: Function Wait() needs a String as parameter."
+    throw "Exception: Function Wait() needs a DOM string as parameter."
   }
 }
 
@@ -223,6 +223,6 @@ const Confirm = async (html) => {
       })
     })
   } else {
-    throw "Exception: Function Wait() needs a String as parameter."
+    throw "Exception: Function Wait() needs a DOM string as parameter."
   }
 };
