@@ -19,20 +19,24 @@ Change the notification.css to adpat your personal style.
 like javascript window.alert()
 
 e.g.: blocking popup: await Alert("Alarm Alarm Alarm") -> then()
+
 e.g.: non-blocking popup: Alert("Alarm Alarm Alarm") -> then()
 
 ## Prompt
 like javascript window.prompt()
 
 e.g.: blocking popup: await Prompt("Enter something:") -> then(<value>) -> catch(<value>)
+  
 e.g.: non-blocking popup: Prompt("Enter something:") -> then(<value>) -> catch(<value>)
 
 ## Confirm
 like javascript window.confirm()
 
 e.g.: blocking popup: await Alert("Confirm?") -> then() -> catch()
+
 e.g.: non-blocking popup: Alert("Confirm?") -> then() -> catch()
 
 ## Wait
 e.g.: blocking popup: await Wait("We wait until the promise is either resolved or rejected.", promise) -> then(<value>) -> catch(<value>)
+  
 e.g.: non-blocking popup: Wait("We wait until the promise is either resolved or rejected.", promise) -> then(<value>) -> catch(<value>)
