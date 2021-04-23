@@ -41,5 +41,5 @@ e.g.: blocking popup: await Wait("We wait until the promise is either resolved o
   
 e.g.: non-blocking popup: Wait("We wait until the promise is either resolved or rejected.", promise) -> then(<value>) -> catch(<value>)
   
-### Contact me
+## Contact me
 If you find a bug or want a new feature just write an issue.
