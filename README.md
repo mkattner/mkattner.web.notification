@@ -3,27 +3,36 @@ This is a simple javascript and css functionality to display iOS like notificati
 The popups use jQuery and javascript Promise functionality.
 
 ## Installation
-You can try it with the index.html file. Clone the repository to your computer. Start a local webserver. (e.g.: python -m http.server 80)
+You can try it with the index.html file. 
+Clone the repository to your computer. 
+Start a local webserver (e.g.: python -m http.server 80) or just open index.html
 
 Or in your application:
 1) Load jQuery https://jquery.com/
 2) load notification.js and notification.css
-3) Done! Use the functions
+3) Done! Use the functionality.
+
+## Customize
+Change the notification.css to adpat your personal style.
 
 ## Alert
 like javascript window.alert()
 
-e.g.: await Alert("Alarm Alarm Alarm") -> then()
+e.g.: blocking popup: await Alert("Alarm Alarm Alarm") -> then()
+e.g.: non-blocking popup: Alert("Alarm Alarm Alarm") -> then()
 
 ## Prompt
 like javascript window.prompt()
 
-e.g.: await Prompt("Do you want?") -> then(<value>) -> catch()
+e.g.: blocking popup: await Prompt("Enter something:") -> then(<value>) -> catch(<value>)
+e.g.: non-blocking popup: Prompt("Enter something:") -> then(<value>) -> catch(<value>)
 
 ## Confirm
 like javascript window.confirm()
 
-e.g.: await Alert("Confirm?") -> then() -> catch()
+e.g.: blocking popup: await Alert("Confirm?") -> then() -> catch()
+e.g.: non-blocking popup: Alert("Confirm?") -> then() -> catch()
 
 ## Wait
-tbi
+e.g.: blocking popup: await Wait("We wait until the promise is either resolved or rejected.", promise) -> then(<value>) -> catch(<value>)
+e.g.: non-blocking popup: Wait("We wait until the promise is either resolved or rejected.", promise) -> then(<value>) -> catch(<value>)
