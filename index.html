@@ -16,7 +16,31 @@
     let RUN = true;
     const demoProssedure = async () => {
       return new Promise(function(resolve, reject) {
-        Alert("Alert whatever you want.")
+
+        Alert("Let's start the demo procedure.")
+          .then(() => {
+            return Wait("We wait a while.<br>Then resolve.", new Promise((resolve, reject) => {
+              setTimeout(() => {
+                resolve("WAIT RESOVED");
+              }, 1400)
+            }));
+          })
+          .then((value) => {
+            return Alert("Wait resolved with: " + value + "<br>Now we wait a while. Then reject.")
+          })
+          .then(() => {
+            return Wait("We wait a while.<br>Then reject.", new Promise((resolve, reject) => {
+              setTimeout(() => {
+                reject("WAIT REJECTED");
+              }, 1400)
+            }));
+          })
+          .catch((value) => {
+            return Alert("Wait rejected with: " + value)
+          })
+
+
+
           .then(() => {
             return Confirm("Confirm whatever you want.")
           })

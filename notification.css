@@ -6,11 +6,10 @@ div#popup-container {
   left: 0;
   background: rgba(100, 100, 100, 0.5);
   font-family: sans-serif;
-font-weight: 300;
-
+  font-weight: 300;
 }
 
-div#popup-container > div.popup {
+div#popup-container>div.popup {
   display: flex;
   position: absolute;
   width: 300px;
@@ -23,22 +22,24 @@ div#popup-container > div.popup {
   transform: translate(-50%, -50%);
 }
 
-div#popup-container > div.popup > div.content {
+div#popup-container>div.popup>div.content {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
+  padding: 8px;
 }
 
-div#popup-container > div.popup > div.content #promptOutput {
+div#popup-container>div.popup>div.content #promptOutput {
   display: flex;
   flex-direction: column;
   width: 100%;
   text-align: center;
 }
 
-div#popup-container > div.popup > div.content #promptOutput > a {
+div#popup-container>div.popup>div.content #promptOutput>a {
   border-top: 1px solid #80cd32;
   height: 50px;
   justify-content: center;
@@ -46,12 +47,12 @@ div#popup-container > div.popup > div.content #promptOutput > a {
   display: flex;
 }
 
-div#popup-container > div.popup > div.buttons {
+div#popup-container>div.popup>div.buttons {
   display: flex;
   height: 50px;
 }
 
-div#popup-container > div.popup > div.buttons > a.button {
+div#popup-container>div.popup>div.buttons>a.button {
   flex: 1;
   border-top: 1px solid #80cd32;
   border-left: 1px solid #80cd32;
@@ -63,18 +64,20 @@ div#popup-container > div.popup > div.buttons > a.button {
   justify-content: center;
   align-items: center;
   display: flex;
+  text-decoration: none;
+  font-weight: 300;
 }
 
-div#popup-container > div.popup > div.buttons > a.button:focus {
-  font-weight: 800;
+div#popup-container>div.popup>div.buttons>a.button:focus {
+  font-weight: 500;
 }
 
-div#popup-container > div.popup > div.buttons > a.button:first-child {
+div#popup-container>div.popup>div.buttons>a.button:first-child {
   border-top: 1px solid #80cd32;
   border-left: none;
   border-bottom-left-radius: 8px;
 }
 
-div#popup-container > div.popup > div.buttons > a.button:last-child {
+div#popup-container>div.popup>div.buttons>a.button:last-child {
   border-bottom-right-radius: 8px;
 }
