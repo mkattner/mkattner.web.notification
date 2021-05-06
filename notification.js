@@ -135,7 +135,8 @@ const Prompt = async (html) => {
  * @param html A DOM string to display.
  * @return JS Promise() instence which will be resolved.
  */
-const Alert = async (html) => {
+const Alert = async (html, resolveMsg) => {
+  resolveMsg = resolveMsg || OK;
   // Check if method parameters are valid.
   if (html) {
     // Return a new JS Promise() instance.
@@ -151,7 +152,13 @@ const Alert = async (html) => {
           }).append(() => {
             return $('<div>').attr({
               class: "content"
-            }).html(html)
+            }).append(() => {
+              if (html instanceof jQuery) {
+                return html;
+              } else {
+                return $("<p>").html(html)
+              }
+            })
           }).append(() => {
             return $('<div>').attr({
               class: "buttons"
@@ -159,7 +166,7 @@ const Alert = async (html) => {
               return $('<a>').attr({
                 href: "#",
                 class: "button"
-              }).text(OK).on("click", () => {
+              }).text(resolveMsg).on("click", () => {
                 $("#popup-container").remove();;
                 resolve();
               });
@@ -181,7 +188,9 @@ const Alert = async (html) => {
  * @param html A DOM string to display.
  * @return JS Promise() instence which will be resolved or rejected.
  */
-const Confirm = async (html) => {
+const Confirm = async (html, resolveMsg, rejectMsg) => {
+  resolveMsg = resolveMsg || YES;
+  rejectMsg = rejectMsg || NO;
   // Check if method parameters are valid.
   if (html) {
     // Return a new JS Promise() instance.
@@ -197,7 +206,13 @@ const Confirm = async (html) => {
           }).append(() => {
             return $('<div>').attr({
               class: "content"
-            }).text(html)
+            }).append(() => {
+              if (html instanceof jQuery) {
+                return html;
+              } else {
+                return $("<p>").html(html)
+              }
+            })
           }).append(() => {
             return $('<div>').attr({
               class: "buttons"
@@ -205,7 +220,7 @@ const Confirm = async (html) => {
               return $('<a>').attr({
                 href: "#",
                 class: "button"
-              }).text(YES).on("click", () => {
+              }).text(resolveMsg).on("click", () => {
                 $("#popup-container").remove();
                 resolve();
               });
@@ -213,7 +228,7 @@ const Confirm = async (html) => {
               return $('<a>').attr({
                 href: "#",
                 class: "button"
-              }).text(NO).on("click", () => {
+              }).text(rejectMsg).on("click", () => {
                 $("#popup-container").remove();
                 reject();
               })
