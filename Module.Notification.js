@@ -8,8 +8,13 @@ const CANCEL = "Cancel";
 const OK = "Ok";
 
 $(document).on("keydown", function(event) {
-  if (event.key == "Escape") {
-    alert('Esc key pressed.');
+  if ($("#popup-container").length > 0) {
+    event.preventDefault();
+    if (event.key == "Escape") {
+      $("#popup-container").data().notification.rejectFunc();
+    } else if (event.key == "Enter") {
+      $("#popup-container").data().notification.resolveFunc();
+    }
   }
 });
 
@@ -111,7 +116,7 @@ class WrappedPromise {
  */
 const Wait = async (html, promise) => {
   if ($("#popup-container").length > 0) {
-    alert("ERROR! DEBUG: only one popup is allowed!")
+    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty!")
   }
 
   var triggered = false;
@@ -180,7 +185,7 @@ const Wait = async (html, promise) => {
  */
 const Prompt = async (html, resolveMsg, rejectMsg, promise, defaultValue) => {
   if ($("#popup-container").length > 0) {
-    alert("ERROR! DEBUG: only one popup is allowed!")
+    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty!")
   }
 
   var triggered = false;
@@ -238,7 +243,7 @@ const Prompt = async (html, resolveMsg, rejectMsg, promise, defaultValue) => {
                 .append(() => {
                   return $('<a>').attr({
                       href: "#",
-                      class: "button"
+                      class: "button reject"
                     }).text(rejectMsg)
 
                     .on("click", () => {
@@ -251,7 +256,7 @@ const Prompt = async (html, resolveMsg, rejectMsg, promise, defaultValue) => {
                 .append(() => {
                   return $('<a>').attr({
                       href: "#",
-                      class: "button default"
+                      class: "button resolve default"
                     }).text(resolveMsg)
 
                     // The user is done // TODO press enter, on submit
@@ -294,7 +299,7 @@ const Prompt = async (html, resolveMsg, rejectMsg, promise, defaultValue) => {
  */
 const Alert = async (html, resolveMsg, promise, rejectDefault) => {
   if ($("#popup-container").length > 0) {
-    alert("ERROR! DEBUG: only one popup is allowed!")
+    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty!")
   }
 
   var triggered = false;
@@ -348,7 +353,7 @@ const Alert = async (html, resolveMsg, promise, rejectDefault) => {
                 .append(() => {
                   return $('<a>').attr({
                     href: "#",
-                    class: "button"
+                    class: "button " + ((rejectDefault) ? "reject" : "resolve")
                   }).text(resolveMsg).on("click", () => {
                     $("#popup-container").remove();
                     if (rejectDefault === true) {
@@ -388,7 +393,7 @@ const Alert = async (html, resolveMsg, promise, rejectDefault) => {
  */
 const Confirm = async (html, resolveMsg, rejectMsg, promise) => {
   if ($("#popup-container").length > 0) {
-    alert("ERROR! DEBUG: only one popup is allowed!")
+    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty!")
   }
 
   var triggered = false;
@@ -443,7 +448,7 @@ const Confirm = async (html, resolveMsg, rejectMsg, promise) => {
                 .append(() => {
                   return $('<a>').attr({
                     href: "#",
-                    class: "button"
+                    class: "button reject"
                   }).text(rejectMsg).on("click", () => {
                     $("#popup-container").remove();
                     rejectFunc();
@@ -452,7 +457,7 @@ const Confirm = async (html, resolveMsg, rejectMsg, promise) => {
                 .append(() => {
                   return $('<a>').attr({
                     href: "#",
-                    class: "button default"
+                    class: "button resolve default"
                   }).text(resolveMsg).on("click", () => {
                     $("#popup-container").remove();
                     resolveFunc();
