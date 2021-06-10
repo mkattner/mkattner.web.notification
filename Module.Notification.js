@@ -9,10 +9,11 @@ const OK = "Ok";
 
 $(document).on("keydown", function(event) {
   if ($("#popup-container").length > 0) {
-    event.preventDefault();
     if (event.key == "Escape") {
+      event.preventDefault();
       $("#popup-container").data().notification.rejectFunc();
     } else if (event.key == "Enter") {
+      event.preventDefault();
       $("#popup-container").data().notification.resolveFunc();
     }
   }
@@ -59,47 +60,48 @@ const PromiseCondition = (condition, timeout) => {
 }
 
 class WrappedPromise {
-  #extPromise = null;
-  #resolve = null;
-  #reject = null;
-  #triggered = false;
+  extPromise = null;
+
 
   constructor(promise) {
-    this.#extPromise = promise;
+    this.extPromise = promise;
+    this.resolve = null;
+    this.reject = null;
+    this.triggered = false;
   }
 
   get promise() {
     return new Promise((resolve, reject) => {
-      this.#resolve = resolve;
-      this.#reject = reject;
+      this.resolve = resolve;
+      this.reject = reject;
 
-      this.#extPromise
+      this.extPromise
         .then((param) => {
-          if (!this.#triggered) {
-            this.#triggered = true;
-            this.#resolve(param);
+          if (!this.triggered) {
+            this.triggered = true;
+            this.resolve(param);
           }
         })
         .catch((param) => {
-          if (!this.#triggered) {
-            this.#triggered = true;
-            this.#reject(param);
+          if (!this.triggered) {
+            this.triggered = true;
+            this.reject(param);
           }
         });
     });
   }
 
   resolve(param) {
-    if (!this.#triggered) {
-      this.#triggered = true;
-      this.#resolve(param);
+    if (!this.triggered) {
+      this.triggered = true;
+      this.resolve(param);
     }
   }
 
   reject(param) {
-    if (!this.#triggered) {
-      this.#triggered = true;
-      this.#resolve(param);
+    if (!this.triggered) {
+      this.triggered = true;
+      this.resolve(param);
     }
   }
 
@@ -114,11 +116,12 @@ class WrappedPromise {
  * @param promise A JS Promise() instance.
  * @return JS Promise() instence which will be resolved or rejected.
  */
-const Wait = async (html, promise) => {
+const Wait = async (html, promise, initialTimeoutMs) => {
   if ($("#popup-container").length > 0) {
-    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty!")
+    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty! " + html)
   }
-
+  initialTimeoutMs = initialTimeoutMs || 50;
+  var timeout = null;
   var triggered = false;
   // Check if method parameters are valid.
   if (html && promise) {
@@ -127,6 +130,7 @@ const Wait = async (html, promise) => {
       const resolveFunc = (param) => {
         if (!triggered) {
           triggered = true;
+          clearTimeout(timeout);
           $("#popup-container").remove();
           resolve(param);
         }
@@ -135,6 +139,7 @@ const Wait = async (html, promise) => {
       const rejectFunc = (param) => {
         if (!triggered) {
           triggered = true;
+          clearTimeout(timeout);
           $("#popup-container").remove();
           reject(param);
         }
@@ -162,8 +167,10 @@ const Wait = async (html, promise) => {
         notification: new Notification($domElement, resolveFunc, rejectFunc)
       });
 
-      $("body")
-        .append($domElement);
+      timeout = setTimeout(() => {
+        $("body")
+          .append($domElement);
+      }, initialTimeoutMs);
 
       // We wait until the JS Promise() instance is resolved or rejected.
       // Then we resolve or reject.
@@ -185,7 +192,7 @@ const Wait = async (html, promise) => {
  */
 const Prompt = async (html, resolveMsg, rejectMsg, promise, defaultValue) => {
   if ($("#popup-container").length > 0) {
-    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty!")
+    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty! " + html)
   }
 
   var triggered = false;
@@ -227,7 +234,11 @@ const Prompt = async (html, resolveMsg, rejectMsg, promise, defaultValue) => {
                   class: "content"
                 })
                 .append(() => {
-                  return $("<p>").html(html)
+                  if (html instanceof jQuery) {
+                    return html;
+                  } else {
+                    return $("<p>").html(html)
+                  }
                 })
                 .append(() => {
                   return $("<input>").attr({
@@ -299,7 +310,7 @@ const Prompt = async (html, resolveMsg, rejectMsg, promise, defaultValue) => {
  */
 const Alert = async (html, resolveMsg, promise, rejectDefault) => {
   if ($("#popup-container").length > 0) {
-    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty!")
+    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty! " + html)
   }
 
   var triggered = false;
@@ -393,7 +404,7 @@ const Alert = async (html, resolveMsg, promise, rejectDefault) => {
  */
 const Confirm = async (html, resolveMsg, rejectMsg, promise) => {
   if ($("#popup-container").length > 0) {
-    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty!")
+    alert("ERROR! DEBUG: only one popup is allowed! Program continues but it's dirty! " + html)
   }
 
   var triggered = false;
