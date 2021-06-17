@@ -1,3 +1,6 @@
+//# sourceURL=Module.Notification.js
+
+
 //if (!jQuery)
 //  alert("jQuery not loaded. Notification module will not work and throw strange errors")
 

@@ -1,3 +1,5 @@
+//# sourceURL=Module.Html5Storage.js
+
 const HTML5_STORAGE_GET_PARSED = (key) => {
   return HTML5_STORAGE_PARSE_VALUE(window.localStorage.getItem(key));
 };
